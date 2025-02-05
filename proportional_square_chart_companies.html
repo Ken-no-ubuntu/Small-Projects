@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@5.20.1"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}, "axis": {"labelFontSize": 12, "titleFontSize": 14}, "title": {"anchor": "middle", "color": "gray", "fontSize": 16}}, "data": {"name": "data-480a72fe489c97f52073cc8f675741a0"}, "mark": {"type": "square"}, "encoding": {"color": {"field": "Value", "legend": {"title": "Value"}, "scale": {"scheme": "blues"}, "type": "quantitative"}, "size": {"field": "Value", "scale": {"domain": [0, 227778], "range": [0, 1000]}, "title": "Value", "type": "quantitative"}, "tooltip": [{"field": "Company", "type": "nominal"}, {"field": "Value", "type": "quantitative"}], "x": {"field": "Company", "sort": null, "title": "Company", "type": "nominal"}, "y": {"field": "Value", "scale": {"zero": false}, "title": "Value", "type": "quantitative"}}, "height": 400, "title": "Proportional Square Chart for Company Values", "width": 800, "$schema": "https://vega.github.io/schema/vega-lite/v5.20.1.json", "datasets": {"data-480a72fe489c97f52073cc8f675741a0": [{"Company": "Northern Trust", "Value": 227778}, {"Company": "Sanofi", "Value": 76372}, {"Company": "UCB", "Value": 69145}, {"Company": "Cytokinetics", "Value": 37759}, {"Company": "Integer", "Value": 35825}, {"Company": "Asahi", "Value": 34637}, {"Company": "Merus", "Value": 29211}, {"Company": "Galderma", "Value": 29023}, {"Company": "Intuitive", "Value": 27636}, {"Company": "Avidity", "Value": 27410}, {"Company": "CG", "Value": 22659}, {"Company": "Amvis", "Value": 20907}, {"Company": "4D", "Value": 17857}, {"Company": "Jasper", "Value": 14027}, {"Company": "Hikma", "Value": 12853}, {"Company": "Innovent", "Value": 10211}, {"Company": "Swedish", "Value": 8482}, {"Company": "PepGen", "Value": 8238}, {"Company": "Argenx", "Value": 8186}, {"Company": "Establishment", "Value": 8000}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>
