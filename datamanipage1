@@ -1,0 +1,24 @@
+import pandas as pd
+from dataconsult1df import df_sort_age
+age20s = df_sort_age[df_sort_age['X1_age'] == '5_60歳以上']
+age20s= age20s.drop(columns=["ID"])
+# Replace "XX" and "X" with "0" in the entire DataFrame
+age20s.replace({"XX": "0", "X": "0"}, inplace=True)
+counts_list = []
+
+for column in age20s.columns:
+    # Get value counts while preserving the order
+    counts = age20s[column].value_counts(sort=False)  # sort=False keeps the original order
+    counts_df = counts.reset_index()  # Convert to DataFrame
+    counts_df.columns = [column, f'{column}_count']  # Rename the columns
+    counts_list.append(counts_df)  # Add to the list
+
+# Concatenate all the counts DataFrames side by side
+concatenated_counts = pd.concat(counts_list, axis=1)
+
+# Remove duplicate columns if they exist due to concatenation
+concatenated_counts = concatenated_counts.loc[:,~concatenated_counts.columns.duplicated()]
+
+# Display the result
+print(concatenated_counts)
+concatenated_counts.to_excel(r"E:\pythntest\more py\output6.xlsx", index= False)
